@@ -19,7 +19,7 @@ export function DishList(props: DishListProps) {
   return (
     <div className={Styles.list}>
       {isFetching ? (
-        <DishSkeleton />
+        <DishSkeleton count={6} />
       ) : (
         data?.map((dish) => <Dish key={dish.id} {...dish} />)
       )}

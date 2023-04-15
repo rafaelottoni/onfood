@@ -1,9 +1,12 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { DishSkeletonProps } from "./types";
 
-export function DishSkeleton() {
-  return (
-    <SkeletonTheme baseColor="#ccc" highlightColor="#eee">
+export function DishSkeleton({ count }: DishSkeletonProps) {
+  const skeletons = [];
+
+  for (let i = 0; i < count; i++) {
+    skeletons.push(
       <div>
         <Skeleton
           count={1}
@@ -22,7 +25,13 @@ export function DishSkeleton() {
           />
         </div>
         <Skeleton count={1} height={24} width="50%" />
-      </div>
+      </div>,
+    );
+  }
+
+  return (
+    <SkeletonTheme baseColor="#ccc" highlightColor="#eee">
+      {skeletons}
     </SkeletonTheme>
   );
 }
