@@ -2,10 +2,10 @@ import Head from "next/head";
 import { PageTemplate, DishList } from "@/components";
 import Styles from "../../styles/discover.module.css";
 import { api } from "@/services";
-import { CityPros, PageDiscoverProps, ParamsStaticProps } from "@/types";
+import { CityProps, DishType, PageDiscoverProps, ParamsStaticProps } from "@/types";
 
 export default function Descobrir(props: PageDiscoverProps) {
-  const { city } = props;
+  const { city, deliveries } = props;
 
   return (
     <>
@@ -20,7 +20,7 @@ export default function Descobrir(props: PageDiscoverProps) {
       <PageTemplate>
         <div className={Styles.content}>
           <h1>Opções na região de {city.name}</h1>
-          <p>Encontramos {city.catalogEstimated} opções</p>
+          <p>Encontramos {deliveries} opções</p>
           <div className={Styles.items}>
             <DishList citySlug={city.slug} />
           </div>
@@ -34,7 +34,7 @@ export async function getStaticPaths() {
   const response = await api.get("/cities");
   const cities = response.data;
 
-  const urls = cities.map((city: CityPros) => ({
+  const urls = cities.map((city: CityProps) => ({
     params: {
       city: city.slug,
     },
@@ -48,13 +48,16 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: ParamsStaticProps) {
   const citySlug = params?.city as string;
-  const response = await api.get(`/cities?citySlug=${citySlug}`);
+  const cityResponse = await api.get(`/cities?citySlug=${citySlug}`);
+  const deliveriesResponse = await api.get<DishType[]>(`/deliveries?city=${citySlug}`);
 
-  const city = response.data;
+  const city = cityResponse.data;
+  const deliveries = deliveriesResponse.data.length;
 
   return {
     props: {
       city,
+      deliveries,
     },
     revalidate: 30,
   };

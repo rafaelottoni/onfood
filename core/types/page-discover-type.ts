@@ -1,4 +1,6 @@
-export type CityPros = {
+import { DishType } from "./dish-type";
+
+export type CityProps = {
   id: number;
   name: string;
   slug: string;
@@ -12,5 +14,6 @@ export type ParamsStaticProps = {
 };
 
 export type PageDiscoverProps = {
-  city: CityPros;
+  city: CityProps;
+  deliveries: number;
 };
