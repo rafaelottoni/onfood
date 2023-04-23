@@ -1,11 +1,17 @@
+import { IconHeart } from "@/icons";
+import { DishType } from "@/types";
 import Image from "next/image";
 import { DishDetails } from "..";
-import { DishType } from "@/types";
 import Styles from "./dish.module.css";
 
 export function Dish(props: DishType) {
   return (
     <div className={Styles.dish}>
+      <div className={Styles.bookmarkContainer}>
+        <button className={Styles.bookmarkAdd}>
+          <IconHeart />
+        </button>
+      </div>
       <div className={Styles.wrapper}>
         <Image
           src={props.picture}

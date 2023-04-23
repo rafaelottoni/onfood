@@ -7,6 +7,25 @@
   @apply w-full h-auto;
 }
 
+.bookmarkContainer {
+  @apply flex justify-end;
+}
+
+.bookmarkAdd {
+  @apply absolute flex z-10 mr-4 mt-3;
+  @apply items-center px-2 min-h-[36px];
+  @apply bg-white rounded-xl transition-colors cursor-pointer;
+  @apply hover:bg-[#503e9d] hover:text-white hover:border-[#503e9d];
+}
+
+.bookmarkAdd svg {
+  @apply w-4 h-4 fill-black;
+}
+
+.bookmarkAdd:hover svg {
+  @apply fill-white;
+}
+
 .header {
   @apply flex items-center justify-between;
   @apply mt-4 mb-4;
