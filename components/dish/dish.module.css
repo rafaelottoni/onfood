@@ -12,8 +12,8 @@
 }
 
 .bookmarkAdd {
-  @apply absolute flex z-10 mr-4 mt-3;
-  @apply items-center px-2 min-h-[36px];
+  @apply absolute flex z-10 mr-4 mt-4;
+  @apply items-center px-3 min-h-[36px];
   @apply bg-white rounded-xl transition-colors cursor-pointer;
   @apply hover:bg-[#503e9d] hover:text-white hover:border-[#503e9d];
 }
